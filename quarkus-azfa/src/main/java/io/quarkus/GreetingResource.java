@@ -12,6 +12,8 @@ import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @Path("/cars")
 public class GreetingResource {
 
@@ -24,14 +26,12 @@ public class GreetingResource {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getAllCars() {
         logger.debug("Env variables: [{}]", System.getenv().toString());
         return Response.ok(resourceService.getCars()).build();
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
     public Response createCar() {
         final CarDto carDto = new CarDto(true, LocalDateTime.now(), LocalDateTime.now(), UUID.randomUUID().toString());
         return Response.ok(resourceService.createResource(carDto)).build();

@@ -9,12 +9,13 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
-class CarRepository implements CarDao {
+class CarRepository extends AbstractDao<CarEntity> implements CarDao {
 
-    final EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Inject
     public CarRepository(EntityManager entityManager) {
+        super(entityManager);
         this.entityManager = entityManager;
     }
 
